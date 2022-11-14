@@ -24,7 +24,6 @@ class ShoppingCartSpec extends AnyFlatSpec with ScalaCheckPropertyChecks {
     }
   }
 
-
   "Companion object" must "correctly parse input" in {
     forAll(parsingScenarios) {
       (input, expected) =>

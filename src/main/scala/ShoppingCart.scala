@@ -36,14 +36,12 @@ object ShoppingCart {
     "orange" -> .25
   )
 
-  val emptyCart: Map[ProductName, Int] = prices.view.mapValues(_ => 0).toMap
-
   def parse(input: String): ShoppingCart = apply(
     input
       .trim
       .toLowerCase
       .split("\\s+")
-      .foldLeft(emptyCart) { (acc, product) =>
+      .foldLeft(Map.empty[ProductName, Int]) { (acc, product) =>
         acc.updatedWith(product) {
           case Some(amount) => Some(amount + 1)
           case None => Some(1)
