@@ -3,19 +3,18 @@ package uk.softar
 import scala.io.StdIn.readLine
 
 object CheckoutSystem extends App {
-  private val prices = Map[String, BigDecimal](
-    "apple" ->  .60,
-    "orange" -> .25
+
+  private val offers = Map(
+    "apple" -> (2, 1), // 2 for 1 - buy 1 get 1 free
+    "orange" -> (3, 2) // 3 for the price of 2
   )
 
   println("Please enter a space-separated list of products.")
 
-  val totalCost = readLine
-    .toLowerCase
-    .split("\\s+")
-    .map(prices)
-    .sum
-    .setScale(2)
+  private val totalCost = ShoppingCart
+    .parse(readLine())
+    .withApplied(offers)
+    .totalCost
 
   println(s"Total cost of products is £$totalCost.")
 }
