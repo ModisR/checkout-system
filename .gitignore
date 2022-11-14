@@ -1,0 +1,5 @@
+# conf
+.bsp/
+.idea/
+# generated
+target/
