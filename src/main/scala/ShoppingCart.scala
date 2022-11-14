@@ -1,28 +1,28 @@
 package uk.softar
 
-import ShoppingCart.PRICES
+import ShoppingCart.prices
 
 case class ShoppingCart(cart: Map[String, Int]) {
   def totalCost: BigDecimal =
     cart
-      .map { case (product, amount) => PRICES(product) * amount }
+      .map { case (product, amount) => prices(product) * amount }
       .sum
       .setScale(2)
 }
 
 object ShoppingCart {
-  val PRICES: Map[String, BigDecimal] = Map(
+  val prices: Map[String, BigDecimal] = Map(
     "apple" -> .60,
     "orange" -> .25
   )
 
-  private val EMPTY_CART = PRICES.view.mapValues(_ => 0).toMap
+  val empty: Map[String, Int] = prices.view.mapValues(_ => 0).toMap
 
   def parse(input: String): ShoppingCart = apply(
     input
       .toLowerCase
       .split("\\s+")
-      .foldLeft(EMPTY_CART){
+      .foldLeft(empty){
         (acc, product) =>
           acc.updatedWith(product){
             case Some(amount) => Some(amount + 1)
