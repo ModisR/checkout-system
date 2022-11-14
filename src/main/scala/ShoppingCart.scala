@@ -41,6 +41,7 @@ object ShoppingCart {
       .trim
       .toLowerCase
       .split("\\s+")
+      .filter(_.nonEmpty)
       .foldLeft(Map.empty[ProductName, Int]) { (acc, product) =>
         acc.updatedWith(product) {
           case Some(amount) => Some(amount + 1)

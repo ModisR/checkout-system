@@ -15,8 +15,8 @@ class ShoppingCartSpec extends AnyFlatSpec with ScalaCheckPropertyChecks {
         assert(actual == expected)
     }
   }
-  "Companion class" must "compute correct discounts" in {
 
+  "Companion class" must "compute correct discounts" in {
     forAll(offerScenarios) {
       (input, expected) =>
         val actual = ShoppingCart(input).withApplied(offers).totalCost
