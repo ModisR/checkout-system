@@ -38,7 +38,6 @@ object ShoppingCart {
 
   def parse(input: String): ShoppingCart = apply(
     input
-      .trim
       .toLowerCase
       .split("\\s+")
       .filter(_.nonEmpty)
