@@ -25,6 +25,14 @@ case class ShoppingCart(cart: Map[String, Int]) {
           product -> adjustedAmount
       }
     )
+
+  def withAppleBananaOffer: ShoppingCart = ShoppingCart {
+    val cheaperOf2 = List("apple", "banana") minBy { product =>
+      cart.getOrElse(product, 0) * ShoppingCart.prices(product)
+    }
+
+    cart - cheaperOf2
+  }
 }
 
 object ShoppingCart {
@@ -33,12 +41,12 @@ object ShoppingCart {
 
   val prices: Map[ProductName, BigDecimal] = Map(
     "apple" -> .60,
-    "orange" -> .25
+    "orange" -> .25,
+    "banana" -> .20
   )
 
   def parse(input: String): ShoppingCart = apply(
     input
-      .trim
       .toLowerCase
       .split("\\s+")
       .filter(_.nonEmpty)

@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     name := "checkout-system",
     idePackagePrefix := Some("uk.softar"),
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest-flatspec" % "3.2.14" % "test",
+      "org.scalatest" %% "scalatest-propspec" % "3.2.14" % "test",
       "org.scalatestplus" %% "scalacheck-1-17" % "3.2.14.0" % "test"
     )
   )
